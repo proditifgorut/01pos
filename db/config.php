@@ -6,12 +6,40 @@ define('DB_USER', 'app_30908');
 define('DB_PASS', '98b730aa-be6c-479d-a47d-e5e7abc49229');
 
 function db() {
-  static $pdo;
-  if (!$pdo) {
-    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8mb4', DB_USER, DB_PASS, [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]);
-  }
-  return $pdo;
+    static $pdo;
+    if (!$pdo) {
+        try {
+            $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+            
+            // Create users table if it doesn't exist
+            $pdo->exec("
+                CREATE TABLE IF NOT EXISTS `users` (
+                  `id` INT AUTO_INCREMENT PRIMARY KEY,
+                  `name` VARCHAR(255) NOT NULL,
+                  `email` VARCHAR(255) NOT NULL UNIQUE,
+                  `password` VARCHAR(255) NOT NULL,
+                  `role` VARCHAR(50) NOT NULL DEFAULT 'user',
+                  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            ");
+
+            // Create a default admin user if one doesn't exist
+            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt->execute(['admin']);
+            if ($stmt->fetchColumn() === false) {
+                $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+                $stmt->execute(['Admin', 'admin', password_hash('admin123', PASSWORD_DEFAULT), 'admin']);
+            }
+
+        } catch (PDOException $e) {
+            // If the database doesn't exist, this will fail.
+            // This is a simple setup, so we'll just die.
+            // In a real app, you'd have a proper installer.
+            die("DB connection failed: " . $e->getMessage());
+        }
+    }
+    return $pdo;
 }

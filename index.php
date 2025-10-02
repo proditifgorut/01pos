@@ -1,59 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>AI Web App Generator</title>
-    <meta name="description" content="AI Web App Generator: Effortlessly create full-stack web apps with AI-driven design and modern tech stacks.">
-    <meta name="keywords" content="ai web app generator, full-stack generator, react generator, node.js generator, database schema builder, crud generator, ai coding assistant, custom web application, low-code development, source code ownership, instant preview, automatic deployment">
+<?php
+$pageTitle = "Home";
+include 'partials/header.php';
+?>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AI Web App Generator">
-    <meta property="og:description" content="AI Web App Generator: Effortlessly create full-stack web apps with AI-driven design and modern tech stacks.">
-    <meta property="og:image" content="https://project-screens.s3.amazonaws.com/screenshots/34578/app-hero-20251002-012850.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="AI Web App Generator">
-    <meta property="twitter:description" content="AI Web App Generator: Effortlessly create full-stack web apps with AI-driven design and modern tech stacks.">
-    <meta property="twitter:image" content="https://project-screens.s3.amazonaws.com/screenshots/34578/app-hero-20251002-012850.png">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Georgia:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/custom.css?v=<?php echo time(); ?>">
-</head>
-<body>
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">GenApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-2" href="#">Get Started</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main>
         <section class="hero text-center">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-9">
                         <h1 class="display-3 mb-3">Build Your Web App in Minutes, Not Months</h1>
                         <p class="lead mb-4">Describe your vision. Our AI generates the full-stack code, from frontend to database. You own it all.</p>
-                        <a href="#" class="btn btn-primary btn-lg">Start Building for Free</a>
+                        <a href="register.php" class="btn btn-primary btn-lg">Start Building for Free</a>
                         <a href="#features" class="btn btn-secondary btn-lg">Explore Features</a>
                     </div>
                 </div>
@@ -126,18 +82,5 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer class="text-center">
-        <div class="container">
-            <p class="mb-0">&copy; <?php echo date("Y"); ?> GenApp. All rights reserved.</p>
-            <p><a href="/privacy.php">Privacy Policy</a></p>
-        </div>
-    </footer>
-
-    <div id="toast-container" class="toast-container"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js?v=<?php echo time(); ?>"></script>
-</body>
-</html>
+<?php include 'partials/footer.php'; ?>
